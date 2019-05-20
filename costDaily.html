@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+  <meta name="description" content="Miminium Admin Template v.1">
+  <meta name="author" content="Isna Nur Azis">
+  <meta name="keyword" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seguimiento Requi</title>
+
+  <!-- start: Css -->
+  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+
+  <!-- plugins -->
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/datatables.bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css"/>
+  <link href="asset/css/style.css" rel="stylesheet">
+  <!-- end: Css -->
+
+  <link rel="shortcut icon" href="asset/img/logomi.png">
+  <!--Libreria para generar reportes graficos -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body data-spy="scroll" data-target="#navbar-example">
+      <nav class="navbar navbar-default header navbar-fixed-top">
+          <div class="col-md-12 nav-wrapper">
+            <div class="navbar-header" style="width:100%;">              
+              <img src="http://www.nutrypollo.com.mx/images/main-logo.png" width="50" height="50"  alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+               <ul class="nav navbar-nav navbar-right user-nav">
+                 <li class="user-name"><span>Aplicación Monitoreo de Gas Granjas</span></li>
+                  <li class="dropdown avatar-dropdown">              
+                  <a href="index.php" type="button" class="btn btn-info"><b>Requisición</b></a>
+                  </li>
+                  <li class="dropdown avatar-dropdown">              
+                  <a href="ventas.php" type="button" class="btn btn-info"><b>Ventas</b></a>
+                  </li>
+                  <li class="dropdown avatar-dropdown">              
+                  <a href="realtime.php" type="button" class="btn btn-info"><b>Tanques RealTime</b></a>
+                  </li>
+                  <li class="dropdown avatar-dropdown">              
+                  <a href="tanques_gas.php" type="button" class="btn btn-info"><b> % Tanques Gas</b></a>
+                  </li>
+                  <li class="dropdown avatar-dropdown">              
+                  <a href="costDaily.html" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
+                  </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    <div class="container-fluid mimin-wrapper">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>      
+    <div id="main" class="container">
+      <div class="row">       
+        <div class="col-sm-12">
+          <!--button v-on:click="getGranjas" class="btn btn-primary">Mostrar Datos</button-->
+          <!--button v-on:click="getCasetas" class="btn btn-primary">Casetas</button-->
+          <div class="col-md-4 col-md-offset-8">
+            <input type="text" class="form-control" placeholder="Proyecto" v-on:keyup="searchMonitor" v-model="search.keyword">
+        </div>
+          <div class="table-responsive"></div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col"> NumIDCaseta</th>
+                <th scope="col">Modulo</th>
+                  <th scope="col">Caseta</th>
+                    <th scope="col">Granja</th>
+                      <th scope="col">Nombre</th>
+                        <th scope="col">SiteID</th>
+                          <th scope="col">InvtID</th>
+                            <th scope="col">QtyAvail</th>
+                              <th scope="col">AvgCost</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Proyecto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in granjas">
+                <td>{{item.NumIDCaseta}}</td>
+                <td>{{item.Modulo}}</td>
+                <td>{{item.Caseta}}</td>
+                  <td>{{item.Granja}}</td>
+                    <td>{{item.Nombre}}</td>
+                      <td>{{item.SiteID}}</td>
+                        <td>{{item.InvtID}}</td>
+                          <td><b>{{item.QtyAvail}}</b> </td>
+                            <td><b>$ {{item.AvgCost}}</b></td>
+                              <td>{{item.Descr}}</td>
+                              <td>{{item.Proyecto}}</td>             
+              </tr>
+            </tbody>
+          </table>
+         
+        </div>
+    </div>
+      </div>
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script type="text/javascript">
+      var app=new Vue({
+        el: "#main",      
+        created() {
+          this.getGranjas();   
+        },
+        data() {
+          return {
+            granjas: [],
+            search: {keyword: ''}
+          }
+        },
+        methods: {
+          getGranjas: function () {
+            axios.get('http://localhost:8000/Casetas/').then(response => {
+              this.granjas = response.data;
+            }).catch(function (error) {
+              console.log(error);
+            });
+          },
+          getCasetas: function () {
+            axios.get('http://localhost:8000/Casetas/' + this.nameGranja).then(response => {
+              this.casetas = response.data;
+              console.log(this.casetas);
+            }).catch(function (error) {
+              console.log(error);
+            });
+          },
+          //Busqueda automatica
+          searchMonitor: function () {
+            var keyword = app.toFormData(app.search);
+            axios.post('http://localhost:8000/Casetas/', keyword)
+              .then(function (response) {
+                this.granjas = response.data;
+
+                if (response.data == '') {
+                  app.noMember = true;
+                }
+                else {
+                  app.noMember = false;
+                }
+              });
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
+

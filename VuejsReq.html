@@ -1,0 +1,75 @@
+!DOCTYPE html>
+<html>
+  <head>
+    <title>My first Vue app</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div id="main" class="container">
+      <div class="row">
+        <img
+          style="-webkit-user-select: none;"
+          src="http://www.nutrypollo.com.mx/images/main-logo.png"
+        />
+        <div class="col-sm-12">
+          <h1>Producción del día</h1>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">InfoRequi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in lists">
+                <td>
+                  NoLote: {{ item.BatNbr }}<br />
+                  {{ item.DivSolic }}<br />
+                  {{ item.AreaSolic }}<br />
+                  {{ item.PersonaSol }}<br />
+                  {{ item.Status }}<br />
+                  {{ item.User2 }}<br />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--div class="col-sm-8">
+        <h1>JSON</h1>
+        <pre>
+          {{ $data | json }}
+        </pre>
+      </div-->
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script-->
+    <script type="text/javascript">
+      var urlUsers = "http://localhost:8000/Semana";
+      new Vue({
+        el: "#main",
+        created: function() {
+          this.getUsers();
+        },
+        data: {
+          lists: []
+        },
+        methods: {
+          getUsers: function() {
+            this.$http.get(urlUsers).then(function(response) {
+              this.lists = response.data.recordset;
+            });
+            /*axios.get(urlUsers).then(response=>{
+            this.lists=response.data;
+          });*/
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
