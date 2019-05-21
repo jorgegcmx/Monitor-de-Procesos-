@@ -6,11 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="http://lipis.github.io/bootstrap-social/assets/img/bootstrap-social.png" />
     <title>schoolgcmx</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   
+    <link rel="stylesheet" type="text/css" href="css/social-buttons.css"/>
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet" >
 </head>
 
 <body class="text-center">
@@ -40,16 +43,80 @@
 
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    <script>
+<script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+<script>
+    var config = {
+        apiKey: "AIzaSyDc49aSK6xEQTmWUa1spegHeR9W2QuGc88",
+        authDomain: "my-appreactjs.firebaseapp.com",
+        databaseURL: "https://my-appreactjs.firebaseio.com",
+        projectId: "my-appreactjs",
+        storageBucket: "my-appreactjs.appspot.com",
+        messagingSenderId: "900279894531"
+    };
+    firebase.initializeApp(config);
+</script>
+<script>
 
-        // 1. Define route components.
-        // These can be imported from other files
-        const admin = {
-            template: ` <div>Administrador</div> ` }
+const admin ={
+        template: `
+             <div>             
+                 
+                 <br>
+                   <a  class="btn btn-lg btn-social btn-google" v-on:click="SocialLogin()">
+                   <img width="100%" height="100%" src="img/google.png">
+                   <font color="white"> Ingresa con una cuenta de Google</font>
+                  </a>                 
+                
+            </div> `,
+        data: {
+            user: null,
+            email: null,
+            uid: null,
+            statusButton: ''
+        },
+        created() {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    this.user = user;
+                    var nombre = this.user.email;
+                    var password = this.user.uid;
+                    var img = this.user.photoURL;
+                    location.href = "Login_google/login_google.php?nombre=" + nombre + "&password=" + password + "&img=" + img;
+                } else {
+                    this.user = null;
+                }
+            });
 
-        const prof = {
-            template: ` <div>
+        },
+        methods: {
+            SocialLogin() {
+                var provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth()
+                    .signInWithPopup(provider)
+                    .then(function (result) {
+                        this.user = result.user;
+                        this.statusButton = 'visibility:visible;';
+                        console.log(this.statusButton);
+                      
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            logout() {
+                firebase.auth().signOut().then(function () {
+                    this.user = null;
+                    return
+                }).catch(function (error) {
+                    // An error happened.
+                });
+            }
+        }
+    };
+
+    const prof = {
+        template: ` <div>
                     <img  src="img/profesor.png" width="80" height="80" class="img-rounded" alt="Cinque Terre"></img>
+                    <br>
                     <form class="form-signin" action="" method="GET">
                     <label for="inputEmail" class="sr-only">Email</label>
                     <input type="email"  class="form-control" placeholder="Email" required="" autofocus="">
@@ -64,8 +131,10 @@
                     <p class="mt-5 mb-3 text-muted">© SchoolGCMX-2019</p>
                     </form></div> ` }
 
-        const Alum = { template: ` <div>
+    const Alum = {
+        template: ` <div>
                 <img  src="img/alumno.png" width="80" height="80" class="img-rounded" alt="Cinque Terre"></img>
+                    <br>
                     <form class="form-signin" action="" method="GET">
                     <label for="inputEmail" class="sr-only">Matricula</label>
                     <input type="text"  class="form-control" placeholder="Matricula" required="" autofocus="">
@@ -81,23 +150,37 @@
                     </form></div> ` }
 
 
-        const routes = [
-            { path: '/admin', component: admin },
-            { path: '/prof', component: prof },
-            { path: '/alum', component: Alum }
+    const routes = [
+           {
+                path: '/admin',
+                component: admin
+            },
+            {
+                path: '/prof',
+                component: prof
+            },
+            {
+                path: '/alum',
+                component: Alum
+            }
         ]
 
 
-        const router = new VueRouter({
-            routes
-        })
+    const router = new VueRouter({
+        routes
+    })
 
 
-        const app = new Vue({
-            router
-        }).$mount('#app')
+    const app = new Vue({
+        router
+    }).$mount('#app')
 
-    </script>
+   
+
+</script>
+  
 </body>
 
 </html>
+
+
