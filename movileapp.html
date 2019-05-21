@@ -81,7 +81,7 @@ const admin ={
                     var nombre = this.user.email;
                     var password = this.user.uid;
                     var img = this.user.photoURL;
-                    location.href = "Login_google/login_google.php?nombre=" + nombre + "&password=" + password + "&img=" + img;
+                    location.href = "../Login_google/login_google.php?nombre=" + nombre + "&password=" + password + "&img=" + img;
                 } else {
                     this.user = null;
                 }
@@ -117,17 +117,17 @@ const admin ={
         template: ` <div>
                     <img  src="img/profesor.png" width="80" height="80" class="img-rounded" alt="Cinque Terre"></img>
                     <br>
-                    <form class="form-signin" action="" method="GET">
+                    <form class="form-signin" >
                     <label for="inputEmail" class="sr-only">Email</label>
-                    <input type="email"  class="form-control" placeholder="Email" required="" autofocus="">
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password"  class="form-control" placeholder="Password" required="">
+                    <input name="usuario" type="email"  class="form-control" placeholder="Email" required="" autofocus="">
+                    <label  for="inputPassword" class="sr-only">Password</label>
+                    <input name="password" type="password"  class="form-control" placeholder="Password" required="">
                     <div class="checkbox mb-3">
                     <label>
                         <a type="checkbox" href=""> ¿Olvidaste tu Contraseña? </a>
                     </label>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar</button>
+                    <button name="app" class="btn btn-lg btn-primary btn-block" type="submit">Iniciar</button>
                     <p class="mt-5 mb-3 text-muted">© SchoolGCMX-2019</p>
                     </form></div> ` }
 
@@ -135,17 +135,17 @@ const admin ={
         template: ` <div>
                 <img  src="img/alumno.png" width="80" height="80" class="img-rounded" alt="Cinque Terre"></img>
                     <br>
-                    <form class="form-signin" action="" method="GET">
+                    <form class="form-signin" >
                     <label for="inputEmail" class="sr-only">Matricula</label>
-                    <input type="text"  class="form-control" placeholder="Matricula" required="" autofocus="">
+                    <input name="usuario" type="text"  class="form-control" placeholder="Matricula" required="" autofocus="">
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password"  class="form-control" placeholder="Password" required="">
+                    <input name="password" type="password"  class="form-control" placeholder="Password" required="">
                     <div class="checkbox mb-3">
                     <label>
                         <a type="checkbox" href=""> ¿Olvidaste tu Contraseña? </a>
                     </label>
                     </div>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar</button>
+                    <button name="app" class="btn btn-lg btn-primary btn-block" type="submit">Iniciar</button>
                     <p class="mt-5 mb-3 text-muted">© SchoolGCMX-2019</p>
                     </form></div> ` }
 
