@@ -12,7 +12,7 @@
                                  
                              
                              </div>
-                             <div align="center" style="border:1px solid blue">
+                             <div align="center" >
                              <h1><?php echo date("d-m-Y H:i:s");?></h1> 
                              </div>
 <!-- end: content -->

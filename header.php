@@ -34,7 +34,7 @@
                   <a href="index.php" type="button" class="btn btn-info"><b>Requisición</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
-                  <a href="ventas.php" type="button" class="btn btn-info"><b>Ventas</b></a>
+                  <a href="ventas.php" type="button" class="btn btn-info"><b>Salidas de Inventrio</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
                   <a href="realtime.php" type="button" class="btn btn-info"><b>Tanques RealTime</b></a>
