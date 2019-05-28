@@ -13,7 +13,7 @@ $url='http://localhost:8000';
                     <div class="col-md-6">
                        <form action="tanques_gas.php" method="GET">
                        <div class="form-group">
-                       <label for="exampleInputEmail1">Ingresa el Almacen</label>
+                        <label for="exampleInputEmail1">Ingresa el Almacen</label>
                        <input type="text" required name="almacen" class="form-control" width="6" >
                        </div>
                       <button type="submit" class="btn btn-primary">Buscar</button><br>

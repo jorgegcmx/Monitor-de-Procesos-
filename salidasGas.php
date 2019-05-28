@@ -16,7 +16,7 @@ $datos= json_decode($res,true);
                           <table   class="table table-striped table-bordered" width="100%" cellspacing="0">
                            <thead>
 						                <tr>   
-                              <th></th>     
+                              <th>No. Transacciones</th>     
                             <th>ALMACEN_GAS</th>
 						                <th>LOCALIZACION_GAS</th>
 						                <th>FECHA_TRANSACCION</th>
