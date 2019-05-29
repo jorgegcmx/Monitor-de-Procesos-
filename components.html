@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+  <meta name="description" content="Miminium Admin Template v.1">
+  <meta name="author" content="Isna Nur Azis">
+  <meta name="keyword" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seguimiento Requi</title>
+
+  <!-- start: Css -->
+  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+
+  <!-- plugins -->
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/datatables.bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css"/>
+  <link href="asset/css/style.css" rel="stylesheet">
+  <!-- end: Css -->
+
+  <link rel="shortcut icon" href="asset/img/logomi.png">
+  <!--Libreria para generar reportes graficos -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body data-spy="scroll" data-target="#navbar-example">
+
+    <div class="container-fluid mimin-wrapper">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>      
+    <div id="main" class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive">
+    
+                    <granja></granja>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script type="text/javascript">
+      
+       Vue.component('granja', {
+            template://html
+                `
+                <div>
+                     <ul class="list-group">
+                     <li class="list-group-item" v-for="item in granjas">
+                     {{item.Nombre}}
+                     <casetas :id="item.Granja"></casetas>                     
+                     </li>
+                    </ul>
+                </div>            
+                `,
+            created() {
+                this.getGranjas();
+            },
+            data() {
+                return {
+                    granjas: []
+                }
+            },
+            methods: {
+                getGranjas: function () {
+                    axios.get('http://localhost:8000/Granjas/').then(response => {
+                        this.granjas = response.data;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            }
+
+        })
+        Vue.component('casetas', {
+                template://html
+                    `
+                <div>
+                     <p v-for="itemm in casetas"><small>{{itemm.NumIDCaseta}}-{{itemm.Granja}}</small></p>
+                </div>            
+                `,
+                props: ['id']
+                ,created() {
+                    this.getCasetas();
+                },
+                data() {
+                    return {
+                        casetas: []
+                    }
+                },
+                methods: {
+                    getCasetas: function () {
+                        axios.get('http://localhost:8000/Casetas/'+this.id).then(response => {
+                            this.casetas = response.data;
+                            console.log(this.casetas);
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    }
+
+                }
+            })
+
+      new Vue({
+        el: "#main"     
+      });
+
+     
+    </script>
+  </body>
+</html>
