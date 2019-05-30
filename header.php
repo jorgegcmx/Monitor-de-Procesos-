@@ -43,7 +43,7 @@
                   <a href="tanques_gas.php" type="button" class="btn btn-info"><b> % Tanques Gas</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
-                  <a href="costDaily.html" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
+                  <a href="components.html" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
                   </li>
               </ul>
             </div>

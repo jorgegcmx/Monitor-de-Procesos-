@@ -23,19 +23,42 @@
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
   <body data-spy="scroll" data-target="#navbar-example">
-
-    <div class="container-fluid mimin-wrapper">
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>      
+        <nav class="navbar navbar-default header navbar-fixed-top">
+            <div class="col-md-12 nav-wrapper">
+              <div class="navbar-header" style="width:100%;">              
+                <img src="http://www.nutrypollo.com.mx/images/main-logo.png" width="50" height="50"  alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+                 <ul class="nav navbar-nav navbar-right user-nav">
+                   <li class="user-name"><span>Aplicación Monitoreo de Gas Granjas</span></li>
+                    <li class="dropdown avatar-dropdown">              
+                    <a href="index.php" type="button" class="btn btn-info"><b>Requisición</b></a>
+                    </li>
+                    <li class="dropdown avatar-dropdown">              
+                    <a href="ventas.php" type="button" class="btn btn-info"><b>Ventas</b></a>
+                    </li>
+                    <li class="dropdown avatar-dropdown">              
+                    <a href="realtime.php" type="button" class="btn btn-info"><b>Tanques RealTime</b></a>
+                    </li>
+                    <li class="dropdown avatar-dropdown">              
+                    <a href="tanques_gas.php" type="button" class="btn btn-info"><b> % Tanques Gas</b></a>
+                    </li>
+                    <li class="dropdown avatar-dropdown">              
+                    <a href="components.html" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
+                    </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+      <div class="container-fluid mimin-wrapper"> 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>   
     <div id="main" class="container">
         <div class="row">
             <div class="col-sm-12">
                 
-                <div class="table-responsive">
-    
+                <div class="table-responsive">    
                     <granja></granja>
                 </div>
             </div>
@@ -44,6 +67,7 @@
     </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script type="text/javascript">
       
@@ -53,13 +77,13 @@
                 <div>
                      <ul class="list-group">
                      <li class="list-group-item" v-for="(item,key,index) in granjas" :key="item.Granja">
-                       {{item.Nombre}}                       
+                       <b>{{item.Nombre}}</b>                       
                         <casetas :id="item.Granja"></casetas>                     
                      </li>
                     </ul>
                 </div>            
                 `,
-            created() {
+                mounted() {
                 this.getGranjas();
             },
             data() {
@@ -82,19 +106,19 @@
                 template://html
                     `
                 <div>
-                   <button v-on:click="getCasetas" type="button" class="btn btn-outline-info" >Show</button>
-                   <button v-on:click="cleard" type="button" class="btn btn-outline-info" >X</button>
+                   <button v-on:click="getCasetas" type="button" class="btn btn-info" >Show</button>
+                   <button v-on:click="cleard" type="button" class="btn btn-danger" >X</button>
                      <div v-for="(itemm,key,index) in casetas" :key="key" >                   
                      <table class="table">
                      <thead class="thead-dark">
                      <tr>
-                     <th>NumIDCaseta</th>
+                     <th>IDCaseta</th>
                      <th>Modulo</th>
                      <th>Caseta</th>
-                     <th>SiteID</th>
-                     <th>InvtID</th>
-                     <th>QtyAvail</th>
-                     <th>AvgCost</th>
+                     <th>Almacen</th>
+                     <th>Articulo</th>
+                     <th>Cantidad</th>
+                     <th>Costo Unitario</th>
                      <th>Descripción</th>
                      <th>Proyecto</th>
                      </tr>
@@ -108,7 +132,7 @@
                      <td>{{itemm.InvtID}}</td>
                      <td>{{itemm.QtyAvail}}</td>
                      <td>{{itemm.AvgCost}}</td>
-                     <td>{{itemm.Descri}}</td>
+                     <td>{{itemm.Descr}}</td>
                      <td>{{itemm.Proyecto}}</td>
                      </tr>
                      </tbody>
