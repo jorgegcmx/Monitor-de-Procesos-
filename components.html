@@ -33,6 +33,7 @@
     <div id="main" class="container">
         <div class="row">
             <div class="col-sm-12">
+                
                 <div class="table-responsive">
     
                     <granja></granja>
@@ -51,9 +52,9 @@
                 `
                 <div>
                      <ul class="list-group">
-                     <li class="list-group-item" v-for="item in granjas">
-                     {{item.Nombre}}
-                     <casetas :id="item.Granja"></casetas>                     
+                     <li class="list-group-item" v-for="(item,key,index) in granjas" :key="item.Granja">
+                       {{item.Nombre}}                       
+                        <casetas :id="item.Granja"></casetas>                     
                      </li>
                     </ul>
                 </div>            
@@ -81,12 +82,44 @@
                 template://html
                     `
                 <div>
-                     <p v-for="itemm in casetas"><small>{{itemm.NumIDCaseta}}-{{itemm.Granja}}</small></p>
+                   <button v-on:click="getCasetas" type="button" class="btn btn-outline-info" >Show</button>
+                   <button v-on:click="cleard" type="button" class="btn btn-outline-info" >X</button>
+                     <div v-for="(itemm,key,index) in casetas" :key="key" >                   
+                     <table class="table">
+                     <thead class="thead-dark">
+                     <tr>
+                     <th>NumIDCaseta</th>
+                     <th>Modulo</th>
+                     <th>Caseta</th>
+                     <th>SiteID</th>
+                     <th>InvtID</th>
+                     <th>QtyAvail</th>
+                     <th>AvgCost</th>
+                     <th>Descripción</th>
+                     <th>Proyecto</th>
+                     </tr>
+                     </thead>
+                     <tbody>
+                     <tr>
+                     <td>{{itemm.NumIDCaseta}}</td>
+                     <td>{{itemm.Modulo}}</td>
+                     <td>{{itemm.Caseta}}</td>
+                     <td>{{itemm.SiteID}}</td>
+                     <td>{{itemm.InvtID}}</td>
+                     <td>{{itemm.QtyAvail}}</td>
+                     <td>{{itemm.AvgCost}}</td>
+                     <td>{{itemm.Descri}}</td>
+                     <td>{{itemm.Proyecto}}</td>
+                     </tr>
+                     </tbody>
+                     </table>                     
+                    </div>
                 </div>            
                 `,
                 props: ['id']
-                ,created() {
-                    this.getCasetas();
+                ,
+                 mounted() {
+                   // this.getCasetas();
                 },
                 data() {
                     return {
@@ -95,9 +128,17 @@
                 },
                 methods: {
                     getCasetas: function () {
-                        axios.get('http://localhost:8000/Casetas/'+this.id).then(response => {
+                        axios.get(`http://localhost:8000/Casetas/${this.id}`).then(response => {
                             this.casetas = response.data;
-                            console.log(this.casetas);
+                            //console.log(this.casetas);
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    },
+                    cleard: function () {
+                        axios.get(`http://localhost:8000/Casetas/0`).then(response => {
+                            this.casetas = response.data;
+                           
                         }).catch(function (error) {
                             console.log(error);
                         });
