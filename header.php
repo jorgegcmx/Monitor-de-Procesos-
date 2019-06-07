@@ -29,9 +29,12 @@
             <div class="navbar-header" style="width:100%;">              
               <img src="http://www.nutrypollo.com.mx/images/main-logo.png" width="50" height="50"  alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                <ul class="nav navbar-nav navbar-right user-nav">
-                 <li class="user-name"><span>Aplicación Monitoreo de Gas Granjas</span></li>
+                 <li class="user-name"><span>Aplicación de Monitoreo </span></li>
                   <li class="dropdown avatar-dropdown">              
                   <a href="index.php" type="button" class="btn btn-info"><b>Requisición</b></a>
+                  </li>
+                  <li class="dropdown avatar-dropdown">              
+                  <a href="ordenCompra.php" type="button" class="btn btn-info"><b>Origen de Orden de Compra</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
                   <a href="ventas.php" type="button" class="btn btn-info"><b>Salidas de Inventrio</b></a>
