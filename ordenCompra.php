@@ -47,14 +47,24 @@ foreach($datos as $key=> $recordsets)
  		 <tr >						
 			<td>
 			<ul class="list-group">
-			    <li class="list-group-item active">Lote :<?php echo $recordsets['PONbr']; ?>  </li> 
+			    <li class="list-group-item active">Lote :<?php echo $recordsets['PONbr']; ?> Total: $<?php echo $recordsets['CuryPOAmt']; ?>  </li> 
 			    <li class="list-group-item">Codigo Proveedor: <?php echo $recordsets['VendID'];	?></li>  
 			    <li class="list-group-item">Nombre: <?php 	echo $recordsets['VendName'];	?></li> 
                 <li class="list-group-item">Usuario: <?php 	echo $recordsets['Crtd_User'];	?></li>   
 			    <li class="list-group-item">
-			    <?php 	
-                echo $recordsets['Status'];
-                ?>
+          <?php   
+          if ($recordsets['Status']=='X'){
+             echo"<span class='label label-danger'>Cancelada</span>";
+          }	elseif ($recordsets['Status']=='M'){
+            echo"<span class='label label-success'>Completada</span>";
+          }elseif ($recordsets['Status']=='O'){
+            echo"<span class='label label-info'>Orden Abierta</span>";
+          }elseif ($recordsets['Status']=='P'){
+            echo"<span class='label label-primary'>Orden Compra</span>";
+          }elseif ($recordsets['Status']=='Q'){
+            echo"<span class='label label-warning'>Cotización</span>";
+          }
+            ?>
                 </li> 
 			 </ul>
 			</td>
@@ -78,7 +88,7 @@ foreach($datos as $key=> $recordsets)
  	               <tr>
  	                  <td>
  	                 <ul class="list-group">
-                     <li class="list-group-item active"><?php echo $pa['InvtID']; ?></span></li>
+                     <li class="list-group-item active"><?php echo $pa['InvtID']; ?>-<?php echo $pa['TranDesc']; ?></span></li>
  	                 <li class="list-group-item">Cantidad: <b><?php echo $pa['QtyOrd']; ?></b></li> 	                
  	                 <li class="list-group-item">Costo Unitario: <b>$<?php echo $pa['CuryUnitCost']; ?></b></li>
                      
