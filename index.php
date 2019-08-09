@@ -3,8 +3,7 @@
 include_once 'header.php';
 $url='http://localhost:8000';
 ?>  
- 
-               <div class="panel box-shadow-none content-header">
+ <div class="panel box-shadow-none content-header">
                   <div class="panel-body">
                     <div class="col-md-6">
                        <form action="index.php" method="GET">

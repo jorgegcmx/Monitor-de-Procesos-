@@ -21,7 +21,6 @@ $datos9= json_decode($rpollo9,true);
 $fechapollo9 = array_column($datos9,'Fecha');
 $kilospollo9 = array_column($datos9,'kilos');
 ?>
-
 <?php
 ?>
 <div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
