@@ -1,9 +1,6 @@
 <?php
-
 include_once 'header.php';
-
 $url='http://localhost:8000';
-
 ?> 
         <script src="ajax.js"></script> 
 

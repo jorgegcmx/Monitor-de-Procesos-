@@ -6,18 +6,15 @@
   <meta name="author" content="Isna Nur Azis">
   <meta name="keyword" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Seguimiento Requi</title>
-
+  <title>Monitor de Procesos</title>
   <!-- start: Css -->
   <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
-
   <!-- plugins -->
   <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css"/>
   <link rel="stylesheet" type="text/css" href="asset/css/plugins/datatables.bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css"/>
   <link href="asset/css/style.css" rel="stylesheet">
-  <!-- end: Css -->
-
+    <!-- end: Css -->
   <link rel="shortcut icon" href="asset/img/logomi.png">
   <!--Libreria para generar reportes graficos -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -46,14 +43,14 @@
                   <a href="tanques_gas.php" type="button" class="btn btn-info"><b> % Tanques Gas</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
-                  <a href="components.html" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
+                  <a href="components.php" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
                   </li>
               </ul>
             </div>
           </div>
         </nav>
       <!-- end: Header -->
-
-      <div class="container-fluid mimin-wrapper">
+<div class="container-fluid mimin-wrapper">
+<div ><br><br><br><br>
   
           

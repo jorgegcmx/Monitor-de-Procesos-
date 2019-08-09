@@ -1,63 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-      <meta charset="utf-8">
-  <meta name="description" content="Miminium Admin Template v.1">
-  <meta name="author" content="Isna Nur Azis">
-  <meta name="keyword" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Seguimiento Requi</title>
+<?php
 
-  <!-- start: Css -->
-  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+include_once 'header.php';
 
-  <!-- plugins -->
-  <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css"/>
-  <link rel="stylesheet" type="text/css" href="asset/css/plugins/datatables.bootstrap.min.css"/>
-  <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css"/>
-  <link href="asset/css/style.css" rel="stylesheet">
-  <!-- end: Css -->
-
-  <link rel="shortcut icon" href="asset/img/logomi.png">
-  <!--Libreria para generar reportes graficos -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  </head>
-  <body data-spy="scroll" data-target="#navbar-example">
-        <nav class="navbar navbar-default header navbar-fixed-top">
-            <div class="col-md-12 nav-wrapper">
-              <div class="navbar-header" style="width:100%;">              
-                <img src="http://www.nutrypollo.com.mx/images/main-logo.png" width="50" height="50"  alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
-                 <ul class="nav navbar-nav navbar-right user-nav">
-                   <li class="user-name"><span>Aplicación Monitoreo de Gas Granjas</span></li>
-                    <li class="dropdown avatar-dropdown">              
-                    <a href="index.php" type="button" class="btn btn-info"><b>Requisición</b></a>
-                    </li>
-                    <li class="dropdown avatar-dropdown">              
-                    <a href="ventas.php" type="button" class="btn btn-info"><b>Ventas</b></a>
-                    </li>
-                    <li class="dropdown avatar-dropdown">              
-                    <a href="realtime.php" type="button" class="btn btn-info"><b>Tanques RealTime</b></a>
-                    </li>
-                    <li class="dropdown avatar-dropdown">              
-                    <a href="tanques_gas.php" type="button" class="btn btn-info"><b> % Tanques Gas</b></a>
-                    </li>
-                    <li class="dropdown avatar-dropdown">              
-                    <a href="components.html" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
-                    </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-      <div class="container-fluid mimin-wrapper"> 
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>   
+?>  
     <div id="main" class="container">
         <div class="row">
-            <div class="col-sm-12">
-                
+            <div class="col-sm-12">                
                 <div class="table-responsive">    
                     <granja></granja>
                 </div>

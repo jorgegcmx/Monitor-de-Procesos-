@@ -1,20 +1,18 @@
 
 <?php
-
 include_once 'header.php';
-
 $url='http://localhost:8000';
 ?>  
-  <div ><br><br><br><br>
+ 
                <div class="panel box-shadow-none content-header">
                   <div class="panel-body">
                     <div class="col-md-6">
                        <form action="index.php" method="GET">
-  <div class="form-group">
-    <label for="exampleInputEmail1">LoteRequisición</label>
-    <input type="number" required name="requi" class="form-control" width="6" >
-  </div>
-  <button type="submit" class="btn btn-primary">Buscar</button></form>
+                       <div class="form-group">
+                         <label for="exampleInputEmail1">LoteRequisición</label>
+                           <input type="number" required name="requi" class="form-control" width="6" >
+                             </div>
+                            <button type="submit" class="btn btn-primary">Buscar</button></form>
                         </p>
                     </div>
                   </div>
