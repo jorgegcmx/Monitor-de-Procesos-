@@ -1,0 +1,101 @@
+<?php include_once 'header.php';?>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            </div>
+            </li>
+            <div class="panel-body">
+                <div class="sparkline13-list">
+                    <?php
+$idzona=null;
+include_once '../Zonashorarias/Classe.php';
+$usu1 = new Classe();
+$datos = $usu1->get_zona($ID);
+   while($fila = $datos->fetchObject()){   ?>
+                    <a
+                        href="view_zona?id=<?php if($fila->idzona!=null){ echo $idzona=$fila->idzona;}else{$idzona=null;} ;?>">
+                        <div>Zona Horaria Establecida</div>
+                        <div>
+                            <?php  echo $fila->zonahoraria;   ?>
+                        </div>
+                    </a>
+                    <?php
+                     }
+                     ?>
+                    <?php if($idzona==null){  ?>
+                    <form class="form-horizontal" action="../Zonashorarias/agregar.php" method="post">
+                        <input type="hidden" name="admin_idadmin" class="form-control" required
+                            value="<?php echo $ID;?>">
+                        <div class="control-group">
+                            <label class="control-label" for="selectError">Establece la zona horaria</label>
+                            <div class="controls">
+                                <select id="selectError" data-rel="chosen" required name="zonahoraria">
+                                    <option></option>
+                                    <?php
+                        foreach(timezone_abbreviations_list() as $abbr => $timezone){
+                        foreach($timezone as $val){
+                       if(isset($val['timezone_id'])){					
+                       echo"<option value=".$val['timezone_id'].">".$val['timezone_id']."</option>";
+                          }
+                         }
+                       }
+                        ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="selectError"></label>
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <?php  }elseif(isset($_GET['id'])){
+		include_once '../conexion/Conexion.php';
+        $id=$_GET['id'];
+        include_once '../Zonashorarias/Classe.php';
+        $usu1 = new Classe();
+        $datos = $usu1->get_zonah($id);
+        $fila = $datos->fetchObject();
+	    ?>
+
+                    <form class="form-horizontal" action="../Zonashorarias/agregar.php" method="post">
+                        <?php if(isset($id)){ echo "<input type='hidden' value='$fila->idzona' name='id'>"; }?>
+                        <input type="hidden" name="admin_idadmin" class="form-control" required
+                            value="<?php echo $ID;?>">
+                        <div class="control-group">
+                            <label class="control-label" for="selectError">Selecciona la nueva zona horaria</label>
+                            <div class="controls">
+                                <select id="selectError" data-rel="chosen" class="form-control" required
+                                    name="zonahoraria">
+                                    <option></option>
+                                    <?php
+                        foreach(timezone_abbreviations_list() as $abbr => $timezone){
+                        foreach($timezone as $val){
+                        if(isset($val['timezone_id'])){					
+                        echo"<option value=".$val['timezone_id'].">".$val['timezone_id']."</option>";
+                          }
+                         }
+                       }
+                        ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="selectError"></label>
+                            <div class="controls">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <?php  } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+    <?php include_once 'footer.php';?>
+

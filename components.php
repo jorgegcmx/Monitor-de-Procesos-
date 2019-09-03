@@ -26,7 +26,7 @@ include_once 'header.php';
                      <ul class="list-group">
                      <li class="list-group-item" v-for="(item,key,index) in granjas" :key="item.Granja">
                        <b>{{item.Nombre}}</b>                       
-                        <casetas :id="item.Granja"></casetas>                     
+                       <casetas :id="item.Granja"></casetas>        
                      </li>
                     </ul>
                 </div>            

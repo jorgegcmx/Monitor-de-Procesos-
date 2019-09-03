@@ -18,7 +18,7 @@
   <link rel="shortcut icon" href="asset/img/logomi.png">
   <!--Libreria para generar reportes graficos -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
+  </head>
 <body id="mimin" class="dashboard">
       <!-- start: Header class="img-circle avatar" -->
         <nav class="navbar navbar-default header navbar-fixed-top">
@@ -52,5 +52,5 @@
       <!-- end: Header -->
 <div class="container-fluid mimin-wrapper">
 <div ><br><br><br><br>
-  
-          
+
+         
