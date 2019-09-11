@@ -1,101 +1,215 @@
-<?php include_once 'header.php';?>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+<?php
+session_start();
+if(!isset($_SESSION['ID'])){
+  header("Location:../../../index.php");
+}
+ $Id_User=$_SESSION['ID'];
+
+			$filtro=$_POST['matricula'];
+			$id_alumnos=$_POST['id_alumnos'];
+			$nombre=$_POST['nombre'];
+			$num=$_POST['num'];
+
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alumnos</title>
+
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/datepicker3.css" rel="stylesheet">
+    <link href="../../css/bootstrap-table.css" rel="stylesheet">
+    <link href="../../css/styles.css" rel="stylesheet">
+
+    <!--Icons-->
+    <script src="../../js/lumino.glyphs.js"></script>
+
+    <script>
+        function printlayer(layer) {
+            var generator = window.open(",'name,");
+            var layertext = document.getElementById(layer);
+            generator.document.write(layertext.innerHTML.replace("Print Me"));
+            generator.document.close();
+            generator.print();
+            generator.close();
+        }
+    </script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.php"><span>Sistema</span>escolar</a>
+                <ul class="user-menu">
+                    <li class="dropdown pull-right">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user">
+                                <use xlink:href="#stroked-male-user"></use>
+                            </svg> Usuario<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="../../../Login/logout.php"><svg class="glyph stroked cancel"
+                                        <?php echo $_SESSION['ID']; ?>>
+                                        <use xlink:href="#stroked-cancel"></use>
+                                    </svg>Cerrar Sesion</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            </li>
-            <div class="panel-body">
-                <div class="sparkline13-list">
-                    <?php
-$idzona=null;
-include_once '../Zonashorarias/Classe.php';
-$usu1 = new Classe();
-$datos = $usu1->get_zona($ID);
-   while($fila = $datos->fetchObject()){   ?>
-                    <a
-                        href="view_zona?id=<?php if($fila->idzona!=null){ echo $idzona=$fila->idzona;}else{$idzona=null;} ;?>">
-                        <div>Zona Horaria Establecida</div>
-                        <div>
-                            <?php  echo $fila->zonahoraria;   ?>
-                        </div>
-                    </a>
-                    <?php
-                     }
-                     ?>
-                    <?php if($idzona==null){  ?>
-                    <form class="form-horizontal" action="../Zonashorarias/agregar.php" method="post">
-                        <input type="hidden" name="admin_idadmin" class="form-control" required
-                            value="<?php echo $ID;?>">
-                        <div class="control-group">
-                            <label class="control-label" for="selectError">Establece la zona horaria</label>
-                            <div class="controls">
-                                <select id="selectError" data-rel="chosen" required name="zonahoraria">
-                                    <option></option>
-                                    <?php
-                        foreach(timezone_abbreviations_list() as $abbr => $timezone){
-                        foreach($timezone as $val){
-                       if(isset($val['timezone_id'])){					
-                       echo"<option value=".$val['timezone_id'].">".$val['timezone_id']."</option>";
-                          }
-                         }
-                       }
-                        ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="selectError"></label>
-                            <div class="controls">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </div>
-                    </form>
-
-
-                    <?php  }elseif(isset($_GET['id'])){
-		include_once '../conexion/Conexion.php';
-        $id=$_GET['id'];
-        include_once '../Zonashorarias/Classe.php';
-        $usu1 = new Classe();
-        $datos = $usu1->get_zonah($id);
-        $fila = $datos->fetchObject();
-	    ?>
-
-                    <form class="form-horizontal" action="../Zonashorarias/agregar.php" method="post">
-                        <?php if(isset($id)){ echo "<input type='hidden' value='$fila->idzona' name='id'>"; }?>
-                        <input type="hidden" name="admin_idadmin" class="form-control" required
-                            value="<?php echo $ID;?>">
-                        <div class="control-group">
-                            <label class="control-label" for="selectError">Selecciona la nueva zona horaria</label>
-                            <div class="controls">
-                                <select id="selectError" data-rel="chosen" class="form-control" required
-                                    name="zonahoraria">
-                                    <option></option>
-                                    <?php
-                        foreach(timezone_abbreviations_list() as $abbr => $timezone){
-                        foreach($timezone as $val){
-                        if(isset($val['timezone_id'])){					
-                        echo"<option value=".$val['timezone_id'].">".$val['timezone_id']."</option>";
-                          }
-                         }
-                       }
-                        ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="selectError"></label>
-                            <div class="controls">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </div>
-                    </form>
-                    <?php  } ?>
-                </div>
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+        <form role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Buscar">
             </div>
-        </div>
+        </form>
+        <ul class="nav menu">
+            <li><a href="../../views_admin/view_alumnos.php"><svg class="glyph stroked arrow left">
+                        <use xlink:href="#stroked-arrow-left" /></svg> Menu</a></li>
+            <li> <a href="#" id="Imprimir" onclick="javascript:printlayer('div-id-name')"><svg
+                        class="glyph stroked app-window">
+                        <use xlink:href="#stroked-app-window"></use>
+                    </svg>Imprimir</a></li>
+            <div class="alert alert-info" role="alert">Para editar las Calificaciones, solo da Clic en la calificación
+                que desees editar</div>
+        </ul>
     </div>
-    <!--/.row-->
-    <?php include_once 'footer.php';?>
+    <!--/.sidebar-->
+    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" id="div-id-name">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">BOLETA DE CALIFICACIONES</div>
+                    <div class="panel-body">
+                        <div class="panel-heading">Nombre del Alumno:<?php echo $nombre;?></div>
+                        <div class="panel-heading">Matricula:<?php echo $num;?></div>
+                        <?php
+                        $Id_User;
+                        include_once 'CalsseCalificaciones.php';
+                        $periodos = new CalsseCalificaciones();
+                        $perio=$periodos->get_periodos($id_alumnos);
+                         while($pe = $perio->fetchObject()){
+                            echo"Periodo: ".$pe->periodoescolar." año ".$pe->anio;
+                            $idciclo=$pe->idperiodos;
+                            $Calificacion_minima=$pe->Calificacion;  
+                           ?>
+                        <table class="table" border="1">
+                            <tr>
+                                <th>Grupos</th>
+                                <th> Calificaciones</th>
+                            </tr>
+                            <?php
+                             $grupo = new CalsseCalificaciones();
+                             $grup=$grupo->get_grupo($filtro,$pe->idperiodos);
+                             while($g = $grup->fetchObject()){
+                             ?>
+                            <tr>
+                                <td><?php echo "$g->grupo"; echo"<br> ";echo "$g->tipodegrupo";  ?> </td>
+                                <td>
+                                    <table class="table">
+                                        <?php
+                                         include_once 'CalsseCalificaciones.php';
+                                         $usu1 = new CalsseCalificaciones();
+                                         $datos=$usu1->get_buscali($filtro,$g->idgrupos);
+                                         ?>
+                                        <tr>
+                                            <th>Materias</th>
+                                            <?php
+                                             $parcial = new CalsseCalificaciones();
+                                             $par=$parcial->get_parcial($Id_User);
+                                              while($p = $par->fetchObject()){
+                                             ?>
+                                            <th><?php echo $p->parcialcol." ".$p->porcentage."%"; ?></th>
+                                            <?php  } ?>
+                                            <th>Final</th>
+                                        </tr>
+                                        <?php
+                                        while($fila = $datos->fetchObject()){
+		                                ?>
+                                        <tr>
+                                            <td><?php echo "$fila->materia";  ?></td>
+                                            <?php 
+									         $item=0;
+                                             $total=0;
+                                             $final=0;
+                                             $valor_porcentual=0;
+                                             $valor_porcentuas_final=0;
+									         $parcia = new CalsseCalificaciones();
+                                             $pa=$parcia->get_parcial($Id_User);
+                                             while($pu = $pa->fetchObject()){
+                                              $item=$item+1;
+									         ?>
+                                            <td>
+                                                <?php								
+									             $valor=($pu->porcentage/100);
+									             $pu->idparcial;
+									             $fila->idmaterias;
 
+                                                $calificacion = new CalsseCalificaciones(); 
+                                                $cali=$calificacion->get_calificacion( $fila->idmaterias,$pu->idparcial,$fila->alumnos_idalumnos,$idciclo);	 
+
+                                                while($c = $cali->fetchObject()){
+                                                echo"<a href='edit_cali.php?id=".$c->idcalificaciones."
+                                                                 &calificacion=".$c->calificacion."'>
+                                                     <span class='label label-info'>".$c->calificacion."</span>
+                                                    </a>";     
+    
+                                                         $valor_porcentual= $c->calificacion * $valor;  
+                                                         $valor_porcentuas_final=$valor_porcentuas_final+$valor_porcentual;      
+                                                         $total=$total+$c->calificacion;       
+                                                      } 
+                                                    ?>
+                                            </td>
+                                            <?php
+                                              } 
+									         ?>
+                                            <td>
+                                                <?php
+                                                   $Prefinal=0;
+                                                   if( $valor_porcentuas_final !=0){
+                                                       $Prefinal=number_format($valor_porcentuas_final, 2, ",", ".");                                                   
+                                                     if($Calificacion_minima>$Prefinal){
+                                                        echo "<span class='label label-danger'>".number_format($valor_porcentuas_final, 2, ",", ".")." No aprobada</span>";  
+                                                     }else{
+                                                        echo "<span class='label label-primary'>".number_format($valor_porcentuas_final, 2, ",", ".")."</span>";  
+                                                     }
+                                                   }else{
+                                                     $final= $total/$item;
+                                                     $Prefinal=number_format($final, 2, ",", ".");
+                                                     if($Calificacion_minima>$Prefinal){
+                                                        echo "<span class='label label-danger'>".number_format($final, 2, ",", ".")." No aprobada</span>";  
+                                                     }else{
+                                                        echo "<span class='label label-primary'>".number_format($final, 2, ",", ".")."</span>"; 
+                                                     }                                                       
+                                                   }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                        <?php
+									    }
+									   ?>
+                                    </table>
+
+                                </td>
+                            </tr>
+                            <?php
+                              }
+                             ?>
+                        </table>
+                        <?php
+                         }
+                        ?>
+                    </div>
