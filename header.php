@@ -46,7 +46,7 @@
                   <a href="components.php" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
-                  <a href="components.php" type="button" class="btn btn-info"><b>consuta de casetas</b></a>
+                  <a href="http://localhost:8090/SQLSERVER_Visor_proyectos_PE/views/" type="button" class="btn btn-info"><b>consuta de casetas</b></a>
                   </li>
               </ul>
             </div>
