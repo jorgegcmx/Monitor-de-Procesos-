@@ -24,14 +24,14 @@
         <nav class="navbar navbar-default header navbar-fixed-top">
           <div class="col-md-12 nav-wrapper">
             <div class="navbar-header" style="width:100%;">              
-              <img src="http://www.nutrypollo.com.mx/images/main-logo.png" width="50" height="50"  alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+              <img src="http://nutrypollo.com.mx/wp-content/uploads/2019/11/main-logo.png" width="50" height="50"  alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
                <ul class="nav navbar-nav navbar-right user-nav">
                  <li class="user-name"><span>Aplicación de Monitoreo </span></li>
                   <li class="dropdown avatar-dropdown">              
-                  <a href="index.php" type="button" class="btn btn-info"><b>Requisición</b></a>
+                  <a href="pedidos.php" type="button" class="btn btn-info"><b>Pedidos</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
-                  <a href="ordenCompra.php" type="button" class="btn btn-info"><b>Origen de Orden de Compra</b></a>
+                  <a href="mortalidad.html" type="button" class="btn btn-info"><b>Mortalidad</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
                   <a href="ventas.php" type="button" class="btn btn-info"><b>Salidas de Inventrio</b></a>
@@ -43,10 +43,7 @@
                   <a href="tanques_gas.php" type="button" class="btn btn-info"><b> % Tanques Gas</b></a>
                   </li>
                   <li class="dropdown avatar-dropdown">              
-                  <a href="components.php" type="button" class="btn btn-info"><b>Costos X Caseta</b></a>
-                  </li>
-                  <li class="dropdown avatar-dropdown">              
-                  <a href="http://localhost:8090/SQLSERVER_Visor_proyectos_PE/views/" type="button" class="btn btn-info"><b>consuta de casetas</b></a>
+                  <a href="http://localhost:8090/SQLSERVER_Visor_proyectos_PE/views/" type="button" class="btn btn-info"><b>Información General Cartones</b></a>
                   </li>
               </ul>
             </div>
