@@ -63,8 +63,6 @@
                 <div class="col-sm-12">
                     <div class="app" align="center">
                         <input-fom></input-fom>
-
-
                     </div>
                 </div>
             </div>
@@ -73,40 +71,18 @@
     <script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script>
 
         Vue.component('line-chart', {
 
-            extends: VueChartJs.Pie,
-            props: ['annio'],
+            extends: VueChartJs.Bar,
+            props: ['annio']
+            ,
             mounted() {
 
                 this.renderChart(this.chartData)
-
-            }, created() {
-
-                /*  axios.get(`http://localhost:8000/mortalidad/${this.annio}`).then(response => {
-                      this.lists = response.data;
-                      const responseData = response.data
-                      console.log(this.annio);
-                      this.renderChart({
-  
-                          labels: responseData.map(item => item.mes),
-                          datasets: [
-                              {
-  
-                                  label: 'Data One',
-                                  backgroundColor: ['#FF5733', '#0E7EE8', '#CA04D0', '#07C601', '#E3F31F', '#0A6EFE', '#F62454', '#545353', '#545354', '#1BB004', '#17A1F5', '#56BDFB'],
-                                  data: responseData.map(item => item.cantidad)
-                              }
-                          ]
-                      }, { responsive: true, maintainAspectRatio: false })
-  
-                  }).catch(function (error) {
-                      console.log(error);
-  
-                  })*/
 
             }, methods: {
                 getMortalidad: function () {
@@ -114,18 +90,71 @@
                     axios.get(`http://localhost:8000/mortalidad/${this.annio}`).then(response => {
                         this.lists = response.data;
                         const responseData = response.data
-                     
+
                         this.renderChart({
 
+                            label: 'Data One',
                             labels: responseData.map(item => item.mes),
                             datasets: [
                                 {
 
                                     label: 'Data One',
-                                    backgroundColor: ['#FF5733', '#0E7EE8', '#CA04D0', '#07C601', '#E3F31F', '#0A6EFE', '#F62454', '#545353', '#545354', '#1BB004', '#17A1F5', '#56BDFB'],
+                                    //hoverBackgroundColor: ['#FF5733', '#0E7EE8', '#CA04D0', '#07C601', '#E3F31F', '#0A6EFE', '#F62454', '#545353', '#FB56F6', '#1BB004', '#17A1F5', '#56BDFB'],
+                                    backgroundColor: {
+                                        linearGradient: [0, 0, 500, 500],
+                                        stops: [
+                                            [0, 'rgb(205, 92, 92)'],
+                                            [1, 'rgb(205, 92, 92)']
+                                        ]
+                                    },
+                                    data: responseData.map(item => item.cantidad),
+                                    borderWidth: 1
+                                }
+                            ]
+                        }, { responsive: true, maintainAspectRatio: false })
+
+                    }).catch(function (error) {
+                        console.log(error);
+
+                    })
+                }
+            }
+        })
+
+        Vue.component('line-chart-granja', {
+            extends: VueChartJs.Bar,
+            props: ['annio']
+            ,
+            mounted() {
+
+                this.renderChart(this.chartData)
+
+            }, created() {
+
+            }, methods: {
+                getMortalidad: function () {
+
+                    axios.get(`http://localhost:8000/mortalidad_granjas/${this.annio}`).then(response => {
+                        this.lists = response.data;
+                        const responseData = response.data
+
+                        this.renderChart({
+                            labels: responseData.map(item => item.mes),
+                            datasets: [
+                                {
+                                    label: 'Data One',
+                                    // backgroundColor: ['#FF5733', '#0E7EE8', '#CA04D0', '#07C601', '#E3F31F', '#0A6EFE', '#F62454', '#FB56F6', '#545354', '#1BB004', '#17A1F5', '#56BDFB', '#19F867', '#EECB03', '#048938', '#DEF00A', '#F98AC7'],
+                                    backgroundColor: {
+                                        linearGradient: [0, 0, 500, 500],
+                                        stops: [
+                                            [0, 'rgb(205, 92, 92)'],
+                                            [1, 'rgb(205, 92, 92)']
+                                        ]
+                                    },
                                     data: responseData.map(item => item.cantidad)
                                 }
                             ]
+
                         }, { responsive: true, maintainAspectRatio: false })
 
                     }).catch(function (error) {
@@ -149,6 +178,7 @@
                       
                         <button @click="handleClick" class="btn btn-primary btn-xs">Mostrar graficas del año :{{ selected }}</button>               
                         <line-chart  ref="chargmortalidad" :annio="selected"></line-chart>
+                        <line-chart-granja  ref="chargmortalidadgranja" :annio="selected"></line-chart-granja>
           </div>
          `,
             data() {
@@ -162,8 +192,9 @@
             },
             methods: {
                 handleClick() {
-                   // alert('hola')
+
                     this.$refs.chargmortalidad.getMortalidad()
+                    this.$refs.chargmortalidadgranja.getMortalidad()
 
                 }
             }
