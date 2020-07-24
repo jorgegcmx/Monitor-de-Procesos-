@@ -72,7 +72,7 @@ var chart = new Chart(ctx, {
     data: {
         labels:listDescr[0],
         datasets: [{
-            label: 'Pedidos del mes / <?php echo date('m'); ?>/<?php echo date('Y'); ?>',
+            label: 'Pedidos del mes / <?php echo $_POST['mes'] ?>/<?php echo $_POST['ano']; ?>',
             backgroundColor: "rgba(255,99,132,0.2)",
             borderColor: "rgba(255,99,132,1)",
             data: listKilos[0]
