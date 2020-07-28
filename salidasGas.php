@@ -1,6 +1,6 @@
 <?php
 include_once 'header.php';
-$url='http://localhost:8000';
+$url='http://localhost:8000/Gas/';
 $al=$_GET['almacen'];
 $tan=$_GET['tanque'];
 $fecha=$_GET['fecha'];
@@ -16,7 +16,7 @@ $datos= json_decode($res,true);
                           <table   class="table table-striped table-bordered" width="100%" cellspacing="0">
                            <thead>
 						                <tr>   
-                              <th>No. Transacciones</th>     
+                            <th>No. Transacciones</th>     
                             <th>ALMACEN_GAS</th>
 						                <th>LOCALIZACION_GAS</th>
 						                <th>FECHA_TRANSACCION</th>
@@ -27,10 +27,9 @@ $datos= json_decode($res,true);
                             <?php
                             $item=0;
                             foreach($datos as $key=> $recordsets)
-                            $item=$item+1;
-                           
- 	                        { 	    
- 	                        ?>
+                            $item=$item+1;                           
+ 	                           { 	    
+ 	                          ?>
                            <tr>
                            <?php 
                             if($item==0){

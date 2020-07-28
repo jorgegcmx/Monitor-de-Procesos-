@@ -87,7 +87,7 @@
             }, methods: {
                 getMortalidad: function () {
 
-                    axios.get(`http://localhost:8000/mortalidad/${this.annio}`).then(response => {
+                    axios.get(`http://localhost:8000/DatosPollo/mortalidad/${this.annio}`).then(response => {
                         this.lists = response.data;
                         const responseData = response.data
 
@@ -134,7 +134,7 @@
             }, methods: {
                 getMortalidad: function () {
 
-                    axios.get(`http://localhost:8000/mortalidad_granjas/${this.annio}`).then(response => {
+                    axios.get(`http://localhost:8000/DatosPollo/mortalidad_granjas/${this.annio}`).then(response => {
                         this.lists = response.data;
                         const responseData = response.data
 
@@ -174,11 +174,10 @@
                             <option>2019</option>
                             <option>2018</option>
                             <option>2017</option>
-                        </select>
-                      
+                        </select>                      
                         <button @click="handleClick" class="btn btn-primary btn-xs">Mostrar graficas del año :{{ selected }}</button>               
                         <line-chart  ref="chargmortalidad" :annio="selected"></line-chart>
-                        <line-chart-granja  ref="chargmortalidadgranja" :annio="selected"></line-chart-granja>
+                        <!--line-chart-granja  ref="chargmortalidadgranja" :annio="selected"></line-chart-granja-->
           </div>
          `,
             data() {
@@ -194,7 +193,7 @@
                 handleClick() {
 
                     this.$refs.chargmortalidad.getMortalidad()
-                    this.$refs.chargmortalidadgranja.getMortalidad()
+                    //this.$refs.chargmortalidadgranja.getMortalidad()
 
                 }
             }
@@ -204,7 +203,6 @@
         var vm = new Vue({
             el: '.app'
         })
-
     </script>
 </body>
 

@@ -1,9 +1,8 @@
 <?php
 include_once 'header.php';
-$url='http://localhost:8000';
+$url='http://localhost:8000/Gas/';
 ?> 
         <script src="ajax.js"></script> 
-
              <div><br><br><br><br>
                <div class="panel box-shadow-none content-header">
                   <div class="panel-body">
@@ -61,7 +60,8 @@ $url='http://localhost:8000';
                       <div class="responsive-table">
                           <table   class="table table-striped table-bordered" width="100%" cellspacing="0">
                            <thead>
-						    <tr>        <th>Status</th>
+						              <tr>       
+                            <th>Status</th>
 						                <th>Almacen</th>
 						                <th>Tanque</th>
                             <th>Capacidad</th>
@@ -70,9 +70,9 @@ $url='http://localhost:8000';
 						                <th>% Variable</th>
                             <th>Ultimo Lot Recepción</th>
 						                <th>Ultimo Lot Salida</th>
-						    </tr>
-						    </thead>
-						    <tbody>
+						                </tr>
+						                </thead>
+						                <tbody>
                             <?php
                             $res = file_get_contents("".$url."/Tanques/".$al."");
                             $datos= json_decode($res,true);

@@ -1,21 +1,21 @@
 <?php
 include_once 'header.php';
 //Nutry Facil
-$url='http://localhost:8000/nutryfacil/1/12/2020';
+$url='http://localhost:8000/SalidasTipoPollo/nutryfacil/1/12/2020';
 $r = file_get_contents("".$url."");
 $dato= json_decode($r,true);  
 $fecha = array_column($dato,'Fecha');
 $kilos = array_column($dato,'kilos');
 
 //Pollo No 10
-$urlpollo10='http://localhost:8000/pollo10/1/12/2020';
+$urlpollo10='http://localhost:8000/SalidasTipoPollo/pollo10/1/12/2020';
 $rpollo = file_get_contents("".$urlpollo10."");
 $datos= json_decode($rpollo,true);  
 $fechapollo = array_column($datos,'Fecha');
 $kilospollo = array_column($datos,'kilos');
 
 //Pollo No 10
-$urlpollo9='http://localhost:8000/pollo9/1/12/2020';
+$urlpollo9='http://localhost:8000/SalidasTipoPollo/pollo9/1/12/2020';
 $rpollo9 = file_get_contents("".$urlpollo9."");
 $datos9= json_decode($rpollo9,true);  
 $fechapollo9 = array_column($datos9,'Fecha');
